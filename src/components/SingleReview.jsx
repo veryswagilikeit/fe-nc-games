@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { getReviewById } from "../api";
 import { useParams } from "react-router-dom"
+import { Comments } from "./Comments";
 
 export const SingleReview = () => {
     const [singleReview, setSingleReview] = useState({});
@@ -23,6 +24,7 @@ export const SingleReview = () => {
             <h4>Comments: {singleReview.comment_count}</h4>
             <h4>Game designed by: {singleReview.designer}</h4>
             <h4>Review posted on: {singleReview.created_at}</h4>
+            <Comments review_id={review_id} />
         </>
     )
 }
