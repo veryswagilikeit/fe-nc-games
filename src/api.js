@@ -6,6 +6,12 @@ const api = axios.create({
 
 export const getReviews = () => {
     return api
-        .get('/reviews')
+        .get(`/reviews`)
         .then(({data}) => data.reviews)
-}
+};
+
+export const getReviewById = (review_id) => {
+    return api
+        .get(`/reviews/${review_id}`)
+        .then(({data}) => data.review);
+};
