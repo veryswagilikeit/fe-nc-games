@@ -15,3 +15,9 @@ export const getReviewById = (review_id) => {
         .get(`/reviews/${review_id}`)
         .then(({data}) => data.review);
 };
+
+export const getCommentsByReviewId = (review_id) => {
+    return api
+        .get(`/reviews/${review_id}/comments`)
+        .then(({data}) => data.comments);
+};
