@@ -2,11 +2,14 @@ import { useEffect, useState } from "react"
 import { getReviewById } from "../api";
 import { useParams } from "react-router-dom"
 import { Comments } from "./Comments";
+import { Vote } from "./Vote";
 
 export const SingleReview = () => {
     const [singleReview, setSingleReview] = useState({});
     const {review_id} = useParams();
     const [isLoading, setIsLoading] = useState(true);
+    const [incVotes, setIncVotes] = useState(0);
+    let props = {review_id:singleReview.review_id, incVotes:incVotes, setIncVotes:setIncVotes}
 
     useEffect(() => {
         getReviewById(review_id)
@@ -31,6 +34,7 @@ export const SingleReview = () => {
             <h4>Game designed by: {singleReview.designer}</h4>
             <h4>Review posted on: {singleReview.created_at}</h4>
             <Comments review_id={review_id} />
+            <Vote {...props} />
         </>
     )
 }
