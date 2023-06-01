@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { patchVote } from "../api";
 
-export const Vote = ({review_id, incVotes, setIncVotes}) => {
+export const Vote = ({review_id, votes}) => {
     const [err, setErr] = useState(null);
+    const [voteCount, setVoteCount] = useState(votes);
+    const [incVotes, setIncVotes] = useState(0);
 
     const incrementVote = (vote) => {
         if ((vote === 1 && incVotes !== 1) || (vote === -1 && incVotes !== -1)) {
@@ -24,14 +26,23 @@ export const Vote = ({review_id, incVotes, setIncVotes}) => {
         };
     };
 
+    const handleClickUp = (voteCount) => {
+        setVoteCount(votes + 1);
+        incrementVote(1);
+    };
+
+    const handleClickDown = (voteCount) => {
+        setVoteCount(votes - 1);
+        incrementVote(-1);
+    };
+
     if (err) return <p>{err}</p>;
 
     return (
         <>
-            <button onClick={() => {
-                incrementVote(1)}}>👍</button>
-
-            <button onClick={() => {incrementVote(-1)}}>👎</button>
+            <h4>Votes: {voteCount}</h4>
+            <button onClick={handleClickUp}>👍</button>
+            <button onClick={handleClickDown}>👎</button>
         </>
     );
 };
