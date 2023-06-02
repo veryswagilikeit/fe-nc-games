@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react';
 import { getReviews } from '../api';
 import { ReviewCard } from './ReviewCard';
 
@@ -12,11 +12,11 @@ export const Reviews = () => {
                 setReviews(reviews);
                 setIsLoading(false);
             })
-    }, [])
+    }, []);
 
     if (isLoading) {
         return <p>Loading...</p>
-    }
+    };
 
     return (
         <>

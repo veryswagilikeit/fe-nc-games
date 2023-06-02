@@ -8,7 +8,7 @@ export const SingleReview = () => {
     const [singleReview, setSingleReview] = useState({});
     const {review_id} = useParams();
     const [isLoading, setIsLoading] = useState(true);
-    let props = {review_id:singleReview.review_id, votes:singleReview.votes}
+    let props = {review_id:singleReview.review_id, votes:singleReview.votes};
 
     useEffect(() => {
         getReviewById(review_id)
@@ -16,7 +16,7 @@ export const SingleReview = () => {
                 setSingleReview(reviewData);
                 setIsLoading(false);
             });
-    }, [review_id])
+    }, [review_id]);
 
     if (isLoading) {
         return <p>Loading...</p>
@@ -31,8 +31,8 @@ export const SingleReview = () => {
             <h4>Comments: {singleReview.comment_count}</h4>
             <h4>Game designed by: {singleReview.designer}</h4>
             <h4>Review posted on: {singleReview.created_at}</h4>
-            <Comments review_id={review_id} />
             <Vote {...props} />
+            <Comments review_id={review_id} />
         </>
-    )
-}
+    );
+};
