@@ -21,3 +21,9 @@ export const getCommentsByReviewId = (review_id) => {
         .get(`/reviews/${review_id}/comments`)
         .then(({data}) => data.comments);
 };
+
+export const patchVote = (review_id, vote) => {
+    return api
+        .patch(`/reviews/${review_id}`, {"inc_votes": vote})
+        .then((res) => res);
+};
